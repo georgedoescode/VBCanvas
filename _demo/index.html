@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>VBCanvas Demo</title>
     <style>
       * {
         margin: 0;
@@ -11,33 +11,58 @@
         box-sizing: border-box;
       }
 
-      .container {
-        /* max-width: 720px; */
-        /* margin: 0 auto; */
+      .wrapper {
+        max-width: 720px;
+        margin: 0 auto;
       }
 
-      .container canvas {
-        width: 100vw;
-        height: 100vh;
+      .demo {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem;
+      }
+
+      .demo > * {
+        width: 150px;
+        height: 50px;
+      }
+
+      svg,
+      canvas {
+        border: 1px dashed #111;
       }
     </style>
   </head>
   <body>
-    <div class="container"></div>
+    <div class="wrapper">
+      <div id="demo-1" class="demo">
+        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+          <rect
+            x="90"
+            y="90"
+            width="20"
+            height="20"
+            stroke="none"
+            fill="red"
+          ></rect>
+        </svg>
+      </div>
+    </div>
     <script src="../dist/vb-canvas.min.js"></script>
     <script>
-      const { ctx } = VBCanvas.createCanvas({
-        target: '.container',
-        viewBox: [0, 0, 300, 150],
-        resolution: window.devicePixelRatio || 1,
-        autoAspectRatio: false,
-        preserveHistory: true,
-      });
+      (function demo1() {
+        const { ctx } = VBCanvas.createCanvas({
+          viewBox: [0, 0, 200, 200],
+          target: '#demo-1',
+          resolution: window.devicePixelRatio,
+          preserveHistory: true,
+          autoAspectRatio: false,
+          scaleMode: 'fill',
+        });
 
-      ctx.fillRect(140, 65, 20, 20);
+        ctx.fillStyle = 'red';
 
-      (function draw() {
-        requestAnimationFrame(draw);
+        ctx.fillRect(90, 90, 20, 20);
       })();
     </script>
   </body>

@@ -1,5 +1,5 @@
 export default {
-  target: null,
+  target: document.body,
   viewBox: [0, 0, 300, 150],
   autoAspectRatio: true,
   scaleMode: 'fit',

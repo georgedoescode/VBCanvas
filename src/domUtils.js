@@ -9,8 +9,6 @@ function resolveTarget(target) {
 function createCanvasHTMLElement() {
   const el = document.createElement('canvas');
 
-  el.style.maxWidth = '100%';
-
   return el;
 }
 

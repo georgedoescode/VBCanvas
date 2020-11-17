@@ -10,7 +10,6 @@ function setCanvasHTMLElementDimensions({
   autoAspectRatio,
   viewBox,
   resolution,
-  canvasHasResized,
 }) {
   if (autoAspectRatio) {
     el.style.height = calculateHeightFromAspectRatio(el, viewBox);

@@ -18,7 +18,13 @@ function createCanvas(opts) {
   opts = Object.assign(DEFAULTS, opts);
   opts.target = resolveTarget(opts.target);
 
-  let canvasHasResized = false;
+  var style = document.createElement('style');
+  style.innerHTML = `
+    canvas {
+      width: 100%;
+    }
+  `;
+  document.head.appendChild(style);
 
   const history = createContextHistory();
 
@@ -38,7 +44,6 @@ function createCanvas(opts) {
       autoAspectRatio: opts.autoAspectRatio,
       viewBox: opts.viewBox,
       resolution: opts.resolution,
-      canvasHasResized,
     });
 
     transformContextMatrix({
@@ -51,8 +56,6 @@ function createCanvas(opts) {
     if (opts.preserveHistory) {
       restoreFromHistory(baseContext, history);
     }
-
-    canvasHasResized = true;
   }
 
   mountCanvasToDOM(opts.target, canvasHTMLElement);
