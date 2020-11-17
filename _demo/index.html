@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        /* max-width: 720px; */
+        /* margin: 0 auto; */
+      }
+
+      .container canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <script src="../dist/vb-canvas.min.js"></script>
+    <script>
+      const { ctx } = VBCanvas.createCanvas({
+        target: '.container',
+        viewBox: [0, 0, 300, 150],
+        resolution: window.devicePixelRatio || 1,
+        autoAspectRatio: false,
+        preserveHistory: true,
+      });
+
+      ctx.fillRect(140, 65, 20, 20);
+
+      (function draw() {
+        requestAnimationFrame(draw);
+      })();
+    </script>
+  </body>
+</html>
