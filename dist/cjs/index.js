@@ -133,11 +133,11 @@ function setCanvasHTMLElementDimensions({
   styleSheet,
 }) {
   if (autoAspectRatio) {
-    if (styleSheet.rules.length > 1) styleSheet.deleteRule(1);
+    if (styleSheet.rules.length) styleSheet.deleteRule(0);
 
     styleSheet.insertRule(
       `.${id} { height: ${calculateHeightFromAspectRatio(el, viewBox)} }`,
-      1
+      0
     );
   }
 
@@ -213,6 +213,18 @@ function restoreFromHistory(ctx, history) {
   }
 }
 
+function createBaseCanvasStyles() {
+  const baseStyleSheet = document.createElement('style');
+  const firstStyleSheet = document.styleSheets[0].ownerNode;
+
+  document.head.insertBefore(baseStyleSheet, firstStyleSheet);
+
+  baseStyleSheet.sheet.insertRule(
+    'canvas { width: 100%; max-width: 100%; }',
+    0
+  );
+}
+
 function createCanvasStyleSheet(id) {
   const canvasStyleSheet = document.createElement('style');
   const firstStyleSheet = document.styleSheets[0].ownerNode;
@@ -221,13 +233,10 @@ function createCanvasStyleSheet(id) {
 
   document.head.insertBefore(canvasStyleSheet, firstStyleSheet);
 
-  canvasStyleSheet.sheet.insertRule(
-    'canvas { width: 100%; max-width: 100%; }',
-    0
-  );
-
   return canvasStyleSheet.sheet;
 }
+
+createBaseCanvasStyles();
 
 function create(opts) {
   opts = Object.assign(DEFAULTS, opts);

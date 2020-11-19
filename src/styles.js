@@ -1,3 +1,15 @@
+function createBaseCanvasStyles() {
+  const baseStyleSheet = document.createElement('style');
+  const firstStyleSheet = document.styleSheets[0].ownerNode;
+
+  document.head.insertBefore(baseStyleSheet, firstStyleSheet);
+
+  baseStyleSheet.sheet.insertRule(
+    'canvas { width: 100%; max-width: 100%; }',
+    0
+  );
+}
+
 function createCanvasStyleSheet(id) {
   const canvasStyleSheet = document.createElement('style');
   const firstStyleSheet = document.styleSheets[0].ownerNode;
@@ -6,12 +18,7 @@ function createCanvasStyleSheet(id) {
 
   document.head.insertBefore(canvasStyleSheet, firstStyleSheet);
 
-  canvasStyleSheet.sheet.insertRule(
-    'canvas { width: 100%; max-width: 100%; }',
-    0
-  );
-
   return canvasStyleSheet.sheet;
 }
 
-export { createCanvasStyleSheet };
+export { createCanvasStyleSheet, createBaseCanvasStyles };

@@ -14,7 +14,9 @@ import { observeElDimensions } from './observeElDimensions';
 import { setCanvasHTMLElementDimensions } from './setCanvasHTMLElementDimensions';
 import { transformContextMatrix } from './transformContextMatrix';
 import { restoreFromHistory } from './restoreFromHistory';
-import { createCanvasStyleSheet } from './styles';
+import { createCanvasStyleSheet, createBaseCanvasStyles } from './styles';
+
+createBaseCanvasStyles();
 
 function create(opts) {
   opts = Object.assign(DEFAULTS, opts);
