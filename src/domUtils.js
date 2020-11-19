@@ -9,6 +9,7 @@ function resolveTarget(target) {
 function createCanvasHTMLElement(id) {
   const el = document.createElement('canvas');
 
+  el.classList.add('vb-canvas');
   el.classList.add(id);
 
   return el;

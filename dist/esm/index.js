@@ -21,6 +21,7 @@ function resolveTarget(target) {
 function createCanvasHTMLElement(id) {
   const el = document.createElement('canvas');
 
+  el.classList.add('vb-canvas');
   el.classList.add(id);
 
   return el;
@@ -212,7 +213,7 @@ function createBaseCanvasStyles() {
   document.head.insertBefore(baseStyleSheet, firstStyleSheet);
 
   baseStyleSheet.sheet.insertRule(
-    'canvas { width: 100%; max-width: 100%; }',
+    '.vb-canvas { width: 100%; max-width: 100%; }',
     0
   );
 }

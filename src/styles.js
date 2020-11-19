@@ -5,7 +5,7 @@ function createBaseCanvasStyles() {
   document.head.insertBefore(baseStyleSheet, firstStyleSheet);
 
   baseStyleSheet.sheet.insertRule(
-    'canvas { width: 100%; max-width: 100%; }',
+    '.vb-canvas { width: 100%; max-width: 100%; }',
     0
   );
 }
