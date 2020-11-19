@@ -1,8 +1,14 @@
+function insertAfter(newNode, referenceNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
 function createBaseCanvasStyles() {
   const baseStyleSheet = document.createElement('style');
-  const firstStyleSheet = document.styleSheets[0].ownerNode;
+  const target = document.styleSheets[0]?.ownerNode || document.head.firstChild;
 
-  document.head.insertBefore(baseStyleSheet, firstStyleSheet);
+  baseStyleSheet.id = 'vb-canvas-base-styles';
+
+  document.head.insertBefore(baseStyleSheet, target);
 
   baseStyleSheet.sheet.insertRule(
     '.vb-canvas { width: 100%; max-width: 100%; }',
@@ -12,11 +18,11 @@ function createBaseCanvasStyles() {
 
 function createCanvasStyleSheet(id) {
   const canvasStyleSheet = document.createElement('style');
-  const firstStyleSheet = document.styleSheets[0].ownerNode;
+  const target = document.getElementById('vb-canvas-base-styles');
 
   canvasStyleSheet.setAttribute('data-canvas-id', id);
 
-  document.head.insertBefore(canvasStyleSheet, firstStyleSheet);
+  insertAfter(canvasStyleSheet, target);
 
   return canvasStyleSheet.sheet;
 }

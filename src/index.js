@@ -18,8 +18,8 @@ import { createCanvasStyleSheet, createBaseCanvasStyles } from './styles';
 
 createBaseCanvasStyles();
 
-function create(opts) {
-  opts = Object.assign(DEFAULTS, opts);
+function createCanvas(opts) {
+  opts = Object.assign({ ...DEFAULTS }, opts);
   opts.target = resolveTarget(opts.target);
 
   const canvasID = randomID();
@@ -38,6 +38,7 @@ function create(opts) {
   );
 
   function resizeCanvas() {
+    console.log(opts.scaleMode);
     setCanvasHTMLElementDimensions({
       id: canvasID,
       el: canvasHTMLElement,
@@ -62,7 +63,6 @@ function create(opts) {
   mountCanvasToDOM(opts.target, canvasHTMLElement);
 
   resizeCanvas();
-
   observeElDimensions(canvasHTMLElement, resizeCanvas);
 
   return {
@@ -71,4 +71,4 @@ function create(opts) {
   };
 }
 
-export { create };
+export { createCanvas };

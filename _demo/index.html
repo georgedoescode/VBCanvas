@@ -12,39 +12,50 @@
         box-sizing: border-box;
       }
 
-      .wrapper {
-        max-width: 720px;
-        margin: 0 auto;
-      }
-      /* 
-      .wrapper canvas,
-      .wrapper svg {
+      .vb-canvas {
         width: 100vw;
-        height: 100vw;
-      } */
+        height: 100vh;
+      }
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <div id="demo-1"></div>
-      <div id="demo-2"></div>
-      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
-        <rect x="90" y="90" width="20" height="20" fill="red"></rect>
-      </svg>
-    </div>
     <script src="../dist/vb-canvas.min.js"></script>
     <script>
       (function demo1() {
-        const { ctx, el } = VBCanvas.create({
-          viewBox: [0, 0, 200, 112.5],
-          target: '#demo-1',
+        const width = 200;
+        const height = 112.5;
+
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: 'body',
           static: true,
           scaleMode: 'fit',
         });
 
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, width, height);
+
         ctx.fillStyle = 'red';
 
-        ctx.fillRect(90, 90, 20, 20);
+        ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
+      })();
+
+      (function demo2() {
+        const width = 200;
+        const height = 112.5;
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: 'body',
+          static: true,
+          scaleMode: 'fill',
+        });
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = 'red';
+
+        ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
       })();
     </script>
   </body>

@@ -5,4 +5,5 @@ export default {
   scaleMode: 'fit',
   resolution: window.devicePixelRatio || 1,
   static: false,
+  id: Math.random(),
 };

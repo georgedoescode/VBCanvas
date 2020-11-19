@@ -16,6 +16,7 @@ var DEFAULTS = {
   scaleMode: 'fit',
   resolution: window.devicePixelRatio || 1,
   static: false,
+  id: Math.random(),
 };
 
 function resolveTarget(target) {
@@ -214,11 +215,17 @@ function restoreFromHistory(ctx, history) {
   }
 }
 
+function insertAfter(newNode, referenceNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
 function createBaseCanvasStyles() {
   const baseStyleSheet = document.createElement('style');
-  const firstStyleSheet = document.styleSheets[0].ownerNode;
+  const target = document.styleSheets[0]?.ownerNode || document.head.firstChild;
 
-  document.head.insertBefore(baseStyleSheet, firstStyleSheet);
+  baseStyleSheet.id = 'vb-canvas-base-styles';
+
+  document.head.insertBefore(baseStyleSheet, target);
 
   baseStyleSheet.sheet.insertRule(
     '.vb-canvas { width: 100%; max-width: 100%; }',
@@ -228,19 +235,19 @@ function createBaseCanvasStyles() {
 
 function createCanvasStyleSheet(id) {
   const canvasStyleSheet = document.createElement('style');
-  const firstStyleSheet = document.styleSheets[0].ownerNode;
+  const target = document.getElementById('vb-canvas-base-styles');
 
   canvasStyleSheet.setAttribute('data-canvas-id', id);
 
-  document.head.insertBefore(canvasStyleSheet, firstStyleSheet);
+  insertAfter(canvasStyleSheet, target);
 
   return canvasStyleSheet.sheet;
 }
 
 createBaseCanvasStyles();
 
-function create(opts) {
-  opts = Object.assign(DEFAULTS, opts);
+function createCanvas(opts) {
+  opts = Object.assign({ ...DEFAULTS }, opts);
   opts.target = resolveTarget(opts.target);
 
   const canvasID = randomID();
@@ -259,6 +266,7 @@ function create(opts) {
   );
 
   function resizeCanvas() {
+    console.log(opts.scaleMode);
     setCanvasHTMLElementDimensions({
       id: canvasID,
       el: canvasHTMLElement,
@@ -283,7 +291,6 @@ function create(opts) {
   mountCanvasToDOM(opts.target, canvasHTMLElement);
 
   resizeCanvas();
-
   observeElDimensions(canvasHTMLElement, resizeCanvas);
 
   return {
@@ -292,5 +299,5 @@ function create(opts) {
   };
 }
 
-exports.create = create;
+exports.createCanvas = createCanvas;
 //# sourceMappingURL=index.js.map
