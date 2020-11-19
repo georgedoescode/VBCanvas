@@ -68,6 +68,14 @@ function createCanvas(opts) {
   return {
     el: canvasHTMLElement,
     ctx: opts.static ? observableContext : baseContext,
+    setViewBox(viewBox) {
+      transformContextMatrix({
+        ctx: baseContext,
+        viewBox: viewBox,
+        resolution: opts.resolution,
+        scaleMode: opts.scaleMode,
+      });
+    },
   };
 }
 

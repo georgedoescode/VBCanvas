@@ -12,16 +12,21 @@
         box-sizing: border-box;
       }
 
-      .vb-canvas {
+      body > .vb-canvas {
         width: 100vw;
         height: 100vh;
+      }
+
+      .wrapper {
+        max-width: 600px;
+        margin: 0 auto;
       }
     </style>
   </head>
   <body>
     <script src="../dist/vb-canvas.min.js"></script>
     <script>
-      (function demo1() {
+      (function () {
         const width = 200;
         const height = 112.5;
 
@@ -40,9 +45,29 @@
         ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
       })();
 
-      (function demo2() {
+      (function () {
+        const width = 200;
+        const height = 200;
+
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: 'body',
+          static: true,
+          scaleMode: 'fit',
+        });
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = 'red';
+
+        ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
+      })();
+
+      (function () {
         const width = 200;
         const height = 112.5;
+
         const { ctx, el } = VBCanvas.createCanvas({
           viewBox: [0, 0, width, height],
           target: 'body',
@@ -56,6 +81,96 @@
         ctx.fillStyle = 'red';
 
         ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
+      })();
+
+      (function () {
+        const width = 200;
+        const height = 112.5;
+
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('wrapper');
+
+        document.body.appendChild(wrapper);
+
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: wrapper,
+          static: true,
+          scaleMode: 'fill',
+        });
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = 'red';
+
+        ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
+      })();
+
+      (function () {
+        const width = 200;
+        const height = 200;
+
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: 'body',
+
+          scaleMode: 'fit',
+        });
+
+        let a = 0;
+
+        (function d() {
+          ctx.fillStyle = 'blue';
+          ctx.fillRect(0, 0, width, height);
+          ctx.fillStyle = 'red';
+
+          ctx.save();
+          ctx.translate(width / 2, height / 2);
+
+          ctx.rotate(a);
+
+          ctx.fillRect(-10, -10, 20, 20);
+
+          ctx.restore();
+
+          a += 0.05;
+
+          requestAnimationFrame(d);
+        })();
+      })();
+
+      (function () {
+        const width = 200;
+        const height = 200;
+
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: 'body',
+
+          scaleMode: 'fill',
+        });
+
+        let a = 0;
+
+        (function d() {
+          ctx.fillStyle = 'blue';
+          ctx.fillRect(0, 0, width, height);
+          ctx.fillStyle = 'red';
+
+          ctx.save();
+          ctx.translate(width / 2, height / 2);
+
+          ctx.rotate(a);
+
+          ctx.fillRect(-10, -10, 20, 20);
+
+          ctx.restore();
+
+          a += 0.05;
+
+          requestAnimationFrame(d);
+        })();
       })();
     </script>
   </body>
