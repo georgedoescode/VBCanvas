@@ -6,13 +6,20 @@ function calculateHeightFromAspectRatio(el, viewBox) {
 }
 
 function setCanvasHTMLElementDimensions({
+  id,
   el,
   autoAspectRatio,
   viewBox,
   resolution,
+  styleSheet,
 }) {
   if (autoAspectRatio) {
-    el.style.height = calculateHeightFromAspectRatio(el, viewBox);
+    if (styleSheet.rules.length > 1) styleSheet.deleteRule(1);
+
+    styleSheet.insertRule(
+      `.${id} { height: ${calculateHeightFromAspectRatio(el, viewBox)} }`,
+      1
+    );
   }
 
   const { width, height } = el.getBoundingClientRect();

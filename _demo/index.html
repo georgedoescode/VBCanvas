@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VBCanvas Demo</title>
+    <link rel="stylesheet" href="style.css" />
     <style>
       * {
         margin: 0;
@@ -15,49 +16,29 @@
         max-width: 720px;
         margin: 0 auto;
       }
-
-      .demo {
-        display: flex;
-        justify-content: space-between;
-        padding: 2rem;
-      }
-
-      .demo > * {
-        width: 150px;
-        height: 50px;
-      }
-
-      svg,
-      canvas {
-        border: 1px dashed #111;
-      }
+      /* 
+      .wrapper canvas,
+      .wrapper svg {
+        width: 100vw;
+        height: 100vw;
+      } */
     </style>
   </head>
   <body>
     <div class="wrapper">
-      <div id="demo-1" class="demo">
-        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
-          <rect
-            x="90"
-            y="90"
-            width="20"
-            height="20"
-            stroke="none"
-            fill="red"
-          ></rect>
-        </svg>
-      </div>
+      <div id="demo-1"></div>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <rect x="90" y="90" width="20" height="20" fill="red"></rect>
+      </svg>
     </div>
     <script src="../dist/vb-canvas.min.js"></script>
     <script>
       (function demo1() {
-        const { ctx } = VBCanvas.createCanvas({
+        const { ctx, el } = VBCanvas.create({
           viewBox: [0, 0, 200, 200],
           target: '#demo-1',
-          resolution: window.devicePixelRatio,
-          preserveHistory: true,
-          autoAspectRatio: false,
-          scaleMode: 'fill',
+          static: true,
+          scaleMode: 'fit',
         });
 
         ctx.fillStyle = 'red';

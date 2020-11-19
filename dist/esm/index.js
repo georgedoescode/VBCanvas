@@ -6,8 +6,8 @@ var DEFAULTS = {
   viewBox: [0, 0, 300, 150],
   autoAspectRatio: true,
   scaleMode: 'fit',
-  resolution: 1,
-  preserveHistory: false,
+  resolution: window.devicePixelRatio || 1,
+  static: false,
 };
 
 function resolveTarget(target) {
@@ -18,8 +18,10 @@ function resolveTarget(target) {
   }
 }
 
-function createCanvasHTMLElement() {
+function createCanvasHTMLElement(id) {
   const el = document.createElement('canvas');
+
+  el.classList.add(id);
 
   return el;
 }
@@ -30,6 +32,14 @@ function getCanvasContext(canvasHTMLElement) {
 
 function mountCanvasToDOM(target, el) {
   target.appendChild(el);
+}
+
+// https://gist.github.com/gordonbrander/2230317
+function randomID() {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function createContextHistory() {
@@ -83,7 +93,7 @@ function observeElDimensions(el, callback) {
 
   const resizeObserver = new ResizeObserver(
     debounce(([entry]) => {
-      const { width, height } = entry.contentRect;
+      const { width, height } = entry.target.getBoundingClientRect();
 
       // prevent infinite resize loops if canvas CSS dimensions are not explicitely set
 
@@ -107,13 +117,20 @@ function calculateHeightFromAspectRatio(el, viewBox) {
 }
 
 function setCanvasHTMLElementDimensions({
+  id,
   el,
   autoAspectRatio,
   viewBox,
   resolution,
+  styleSheet,
 }) {
   if (autoAspectRatio) {
-    el.style.height = calculateHeightFromAspectRatio(el, viewBox);
+    if (styleSheet.rules.length > 1) styleSheet.deleteRule(1);
+
+    styleSheet.insertRule(
+      `.${id} { height: ${calculateHeightFromAspectRatio(el, viewBox)} }`,
+      1
+    );
   }
 
   const { width, height } = el.getBoundingClientRect();
@@ -188,21 +205,32 @@ function restoreFromHistory(ctx, history) {
   }
 }
 
-function createCanvas(opts) {
+function createCanvasStyleSheet(id) {
+  const canvasStyleSheet = document.createElement('style');
+  const firstStyleSheet = document.styleSheets[0].ownerNode;
+
+  canvasStyleSheet.setAttribute('data-canvas-id', id);
+
+  document.head.insertBefore(canvasStyleSheet, firstStyleSheet);
+
+  canvasStyleSheet.sheet.insertRule(
+    'canvas { width: 100%; max-width: 100%; }',
+    0
+  );
+
+  return canvasStyleSheet.sheet;
+}
+
+function create(opts) {
   opts = Object.assign(DEFAULTS, opts);
   opts.target = resolveTarget(opts.target);
 
-  var style = document.createElement('style');
-  style.innerHTML = `
-    canvas {
-      width: 100%;
-    }
-  `;
-  document.head.appendChild(style);
+  const canvasID = randomID();
 
   const history = createContextHistory();
 
-  const canvasHTMLElement = createCanvasHTMLElement();
+  const canvasHTMLElement = createCanvasHTMLElement(canvasID);
+  const canvasStyleSheet = createCanvasStyleSheet(canvasID);
 
   const baseContext = getCanvasContext(canvasHTMLElement);
   const observableContext = createObservableContext(
@@ -214,10 +242,12 @@ function createCanvas(opts) {
 
   function resizeCanvas() {
     setCanvasHTMLElementDimensions({
+      id: canvasID,
       el: canvasHTMLElement,
       autoAspectRatio: opts.autoAspectRatio,
       viewBox: opts.viewBox,
       resolution: opts.resolution,
+      styleSheet: canvasStyleSheet,
     });
 
     transformContextMatrix({
@@ -227,7 +257,7 @@ function createCanvas(opts) {
       scaleMode: opts.scaleMode,
     });
 
-    if (opts.preserveHistory) {
+    if (opts.static) {
       restoreFromHistory(baseContext, history);
     }
   }
@@ -240,9 +270,9 @@ function createCanvas(opts) {
 
   return {
     el: canvasHTMLElement,
-    ctx: opts.preserveHistory ? observableContext : baseContext,
+    ctx: opts.static ? observableContext : baseContext,
   };
 }
 
-export { createCanvas };
+export { create };
 //# sourceMappingURL=index.js.map

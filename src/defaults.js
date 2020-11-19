@@ -3,6 +3,6 @@ export default {
   viewBox: [0, 0, 300, 150],
   autoAspectRatio: true,
   scaleMode: 'fit',
-  resolution: 1,
-  preserveHistory: false,
+  resolution: window.devicePixelRatio || 1,
+  static: false,
 };

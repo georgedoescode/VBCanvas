@@ -6,7 +6,7 @@ function observeElDimensions(el, callback) {
 
   const resizeObserver = new ResizeObserver(
     debounce(([entry]) => {
-      const { width, height } = entry.contentRect;
+      const { width, height } = entry.target.getBoundingClientRect();
 
       // prevent infinite resize loops if canvas CSS dimensions are not explicitely set
 

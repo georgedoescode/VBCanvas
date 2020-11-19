@@ -5,6 +5,7 @@ import {
   createCanvasHTMLElement,
   getCanvasContext,
   mountCanvasToDOM,
+  randomID,
 } from './domUtils';
 
 import { createContextHistory } from './createContextHistory';
@@ -13,22 +14,18 @@ import { observeElDimensions } from './observeElDimensions';
 import { setCanvasHTMLElementDimensions } from './setCanvasHTMLElementDimensions';
 import { transformContextMatrix } from './transformContextMatrix';
 import { restoreFromHistory } from './restoreFromHistory';
+import { createCanvasStyleSheet } from './styles';
 
-function createCanvas(opts) {
+function create(opts) {
   opts = Object.assign(DEFAULTS, opts);
   opts.target = resolveTarget(opts.target);
 
-  var style = document.createElement('style');
-  style.innerHTML = `
-    canvas {
-      width: 100%;
-    }
-  `;
-  document.head.appendChild(style);
+  const canvasID = randomID();
 
   const history = createContextHistory();
 
-  const canvasHTMLElement = createCanvasHTMLElement();
+  const canvasHTMLElement = createCanvasHTMLElement(canvasID);
+  const canvasStyleSheet = createCanvasStyleSheet(canvasID);
 
   const baseContext = getCanvasContext(canvasHTMLElement);
   const observableContext = createObservableContext(
@@ -40,10 +37,12 @@ function createCanvas(opts) {
 
   function resizeCanvas() {
     setCanvasHTMLElementDimensions({
+      id: canvasID,
       el: canvasHTMLElement,
       autoAspectRatio: opts.autoAspectRatio,
       viewBox: opts.viewBox,
       resolution: opts.resolution,
+      styleSheet: canvasStyleSheet,
     });
 
     transformContextMatrix({
@@ -53,7 +52,7 @@ function createCanvas(opts) {
       scaleMode: opts.scaleMode,
     });
 
-    if (opts.preserveHistory) {
+    if (opts.static) {
       restoreFromHistory(baseContext, history);
     }
   }
@@ -66,8 +65,8 @@ function createCanvas(opts) {
 
   return {
     el: canvasHTMLElement,
-    ctx: opts.preserveHistory ? observableContext : baseContext,
+    ctx: opts.static ? observableContext : baseContext,
   };
 }
 
-export { createCanvas };
+export { create };
