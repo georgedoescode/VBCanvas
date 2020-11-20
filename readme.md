@@ -19,3 +19,11 @@ npm i vb-canvas
 # Yarn
 yarn add vb-canvas
 ```
+
+### 2. CDN 
+
+```html
+<script src="https://unpkg.com/vb-canvas/dist/vb-canvas.min.js"></script>
+```
+
+## Usage 
