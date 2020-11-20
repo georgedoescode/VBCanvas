@@ -1,3 +1,5 @@
+<img src="./vb-og.png">
+
 # HTML5 Canvas, responsive.
 
 **Getting `<canvas>` to look great is difficult. Making `<canvas>` responsive is even more difficult. VBCanvas is here to make it easy.**
@@ -84,7 +86,7 @@ Check out the code below for a complete example.
 </html>
 ```
 
-**For more examples, check out the cookbook.**
+**For more examples, check out the demo.**
 
 ### Module bundlers
 
