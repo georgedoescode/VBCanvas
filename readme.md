@@ -2,7 +2,7 @@
 
 **Getting `<canvas>` to look great is difficult. Making `<canvas>` responsive is even more difficult. VBCanvas is here to make it easy.**
 
-VBCanvas allows you to define a canvas viewBox attribute just like SVG. Once set, the canvas will automatically position all drawing relative to the viewBox and scale the canvas automatically. Blissful!
+VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox). Once set, the canvas will automatically position all drawing relative to the viewBox and scale the canvas automatically. Blissful.
 
 ## Demo
 
@@ -59,8 +59,8 @@ Check out the code below for a complete example.
     <script src="https://unpkg.com/vb-canvas/dist/vb-canvas.min.js"></script>
     <script>
       /* 
-        Define our viewBox width and height, any drawing can be done relative to these dimensions
-        and will be automatically scaled to whatever size the <canvas> is rendered!
+        Define the viewBox width and height, any drawing is done relative to these dimensions
+        and will be automatically scaled to whatever size the <canvas> is rendered.
       */
       const canvasWidth = 100;
       const canvasHeight = 100;
@@ -72,7 +72,7 @@ Check out the code below for a complete example.
         target: '.canvas-wrapper',
       });
 
-      // simple animation loop (not library specific)
+      // simple animation loop (not VBCanvas specific)
       (function draw() {
         // draw a rectangle in the center of the canvas
         ctx.fillRect(40, 40, 20, 20);
@@ -82,4 +82,22 @@ Check out the code below for a complete example.
     </script>
   </body>
 </html>
+```
+
+**For more examples, check out the cookbook.**
+
+### Using VBCanvas with module bundlers
+
+To use VBCanvas in a module based environment, just import the `createCanvas` function from `VBCanvas` like so:
+
+```javascript
+import { createCanvas } from 'VBCanvas';
+
+const canvasWidth = 100;
+const canvasHeight = 100;
+
+createCanvas({
+  viewBox: [0, 0, canvasWidth, canvasHeight],
+  ...
+})
 ```
