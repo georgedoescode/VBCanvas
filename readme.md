@@ -27,3 +27,7 @@ yarn add vb-canvas
 ```
 
 ## Usage 
+
+The quickest way to take VBCanvas for a spin is to whip up a simple `.html` file and grab the library from `unpkg`. Once you are all set up, you can create canvasses using `VBCanvas.createCanvas`.
+
+Check out the code below for a complete example.
