@@ -96,7 +96,7 @@ import { createCanvas } from 'VBCanvas';
 const canvasWidth = 100;
 const canvasHeight = 100;
 
-createCanvas({
+const { ctx } = createCanvas({
   viewBox: [0, 0, canvasWidth, canvasHeight],
   ...
 })
