@@ -21,9 +21,29 @@
         max-width: 600px;
         margin: 0 auto;
       }
+
+      .svg-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem;
+        margin-bottom: 2rem;
+        height: 250px;
+      }
+
+      .svg-comparison svg,
+      .svg-comparison canvas {
+        width: 100%;
+        height: 100%;
+      }
     </style>
   </head>
   <body>
+    <div class="svg-comparison">
+      <svg viewBox="0 0 200 112.5" preserveAspectRatio="xMidYMid slice">
+        <rect width="200" height="200" fill="blue"></rect>
+        <rect x="90" y="46.25" width="20" height="20" fill="red"></rect>
+      </svg>
+    </div>
     <script src="../dist/vb-canvas.min.js"></script>
     <script>
       (function () {
@@ -174,6 +194,24 @@
 
           requestAnimationFrame(d);
         })();
+      })();
+
+      (function () {
+        const width = 200;
+        const height = 112.5;
+
+        const { ctx, el } = VBCanvas.createCanvas({
+          viewBox: [0, 0, width, height],
+          target: '.svg-comparison',
+          scaleMode: 'fill',
+          static: true,
+        });
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(90, 46.25, 20, 20);
       })();
     </script>
   </body>
