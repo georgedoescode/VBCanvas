@@ -46,8 +46,8 @@ function transformContextMatrix({ ctx, viewBox, resolution, scaleMode }) {
   const scaleX = fitWidth / viewBoxWidth;
   const scaleY = fitHeight / viewBoxHeight;
 
-  const translateX = (canvasWidth - fitWidth) / 2;
-  const translateY = (canvasHeight - fitHeight) / 2;
+  const translateX = viewBox[0] + (canvasWidth - fitWidth) / 2;
+  const translateY = viewBox[1] + (canvasHeight - fitHeight) / 2;
 
   ctx.setTransform(scaleX, 0, 0, scaleY, translateX, translateY);
 

@@ -197,8 +197,8 @@ function transformContextMatrix({ ctx, viewBox, resolution, scaleMode }) {
   const scaleX = fitWidth / viewBoxWidth;
   const scaleY = fitHeight / viewBoxHeight;
 
-  const translateX = (canvasWidth - fitWidth) / 2;
-  const translateY = (canvasHeight - fitHeight) / 2;
+  const translateX = viewBox[0] + (canvasWidth - fitWidth) / 2;
+  const translateY = viewBox[1] + (canvasHeight - fitHeight) / 2;
 
   ctx.setTransform(scaleX, 0, 0, scaleY, translateX, translateY);
 
@@ -212,6 +212,35 @@ function restoreFromHistory(ctx, history) {
     } else {
       ctx[entry.name] = entry.args;
     }
+  }
+}
+
+function resizeCanvas({
+  opts,
+  canvasID,
+  canvasHTMLElement,
+  canvasStyleSheet,
+  baseContext,
+  history,
+}) {
+  setCanvasHTMLElementDimensions({
+    id: canvasID,
+    el: canvasHTMLElement,
+    autoAspectRatio: opts.autoAspectRatio,
+    viewBox: opts.viewBox,
+    resolution: opts.resolution,
+    styleSheet: canvasStyleSheet,
+  });
+
+  transformContextMatrix({
+    ctx: baseContext,
+    viewBox: opts.viewBox,
+    resolution: opts.resolution,
+    scaleMode: opts.scaleMode,
+  });
+
+  if (opts.static) {
+    restoreFromHistory(baseContext, history);
   }
 }
 
@@ -247,7 +276,7 @@ function createCanvasStyleSheet(id) {
 createBaseCanvasStyles();
 
 function createCanvas(opts) {
-  opts = Object.assign({ ...DEFAULTS }, opts);
+  opts = Object.assign({}, DEFAULTS, opts);
   opts.target = resolveTarget(opts.target);
 
   const canvasID = randomID();
@@ -265,45 +294,24 @@ function createCanvas(opts) {
     }
   );
 
-  function resizeCanvas() {
-    console.log(opts.scaleMode);
-    setCanvasHTMLElementDimensions({
-      id: canvasID,
-      el: canvasHTMLElement,
-      autoAspectRatio: opts.autoAspectRatio,
-      viewBox: opts.viewBox,
-      resolution: opts.resolution,
-      styleSheet: canvasStyleSheet,
-    });
-
-    transformContextMatrix({
-      ctx: baseContext,
-      viewBox: opts.viewBox,
-      resolution: opts.resolution,
-      scaleMode: opts.scaleMode,
-    });
-
-    if (opts.static) {
-      restoreFromHistory(baseContext, history);
-    }
-  }
-
   mountCanvasToDOM(opts.target, canvasHTMLElement);
 
-  resizeCanvas();
-  observeElDimensions(canvasHTMLElement, resizeCanvas);
+  const resize = () =>
+    resizeCanvas({
+      opts,
+      canvasID,
+      canvasHTMLElement,
+      canvasStyleSheet,
+      baseContext,
+      history,
+    });
+
+  resize();
+  observeElDimensions(canvasHTMLElement, resize);
 
   return {
     el: canvasHTMLElement,
     ctx: opts.static ? observableContext : baseContext,
-    setViewBox(viewBox) {
-      transformContextMatrix({
-        ctx: baseContext,
-        viewBox: viewBox,
-        resolution: opts.resolution,
-        scaleMode: opts.scaleMode,
-      });
-    },
   };
 }
 
