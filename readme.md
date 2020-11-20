@@ -86,7 +86,7 @@ Check out the code below for a complete example.
 
 **For more examples, check out the cookbook.**
 
-### Using VBCanvas with module bundlers
+### Module bundlers
 
 To use VBCanvas in a module based environment, just import the `createCanvas` function from `VBCanvas` like so:
 
