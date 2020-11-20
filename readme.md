@@ -7,3 +7,15 @@ VBCanvas allows you to define a canvas viewBox attribute just like SVG. Once set
 ## Demo
 
 ADD DEMO HERE
+
+## Installation
+
+### 1. Package Manager
+
+```bash
+# npm
+npm i vb-canvas
+
+# Yarn
+yarn add vb-canvas
+```
