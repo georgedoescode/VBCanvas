@@ -27,20 +27,21 @@
         grid-template-columns: 1fr 1fr;
         grid-gap: 2rem;
         margin-bottom: 2rem;
-        height: 250px;
+        height: 150px;
       }
 
       .svg-comparison svg,
       .svg-comparison canvas {
         width: 100%;
         height: 100%;
+        border: 1px solid black;
       }
     </style>
   </head>
   <body>
     <div class="svg-comparison">
-      <svg viewBox="25 25 200 112.5" preserveAspectRatio="xMidYMid slice">
-        <rect width="200" height="200" fill="blue"></rect>
+      <svg viewBox="0 -111 200 112.5" preserveAspectRatio="xMidYMid meet">
+        <rect width="200" height="112.5" fill="blue"></rect>
         <rect x="90" y="46.25" width="20" height="20" fill="red"></rect>
       </svg>
     </div>
@@ -201,9 +202,9 @@
         const height = 112.5;
 
         const { ctx, el } = VBCanvas.createCanvas({
-          viewBox: [25, 25, width, height],
+          viewBox: [0, -111, width, height],
           target: '.svg-comparison',
-          scaleMode: 'fill',
+          scaleMode: 'fit',
           static: true,
         });
 
