@@ -10,7 +10,7 @@ VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https:/
 
 ## Demo
 
-ADD DEMO HERE
+TODO: ADD DEMO HERE
 
 ## Installation
 
@@ -105,3 +105,14 @@ const { ctx } = createCanvas({
   ...
 })
 ```
+
+### Options
+
+| Name              | Type                 | Default                   | Description                                                                                                                                             |
+| ----------------- | -------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `target`          | `String Or DOM Node` | `document.body`           | Where to add the `<canvas>` element in the DOM                                                                                                          |
+| `viewBox`         | `Array`              | `[0, 0, 200, 200]`        | Canvas viewbox (x, y, w, h). Mirrors SVG Behaviour.                                                                                                     |
+| `autoAspectRatio` | `Boolean`            | `true`                    | Match DOM dimensions to `viewBox`. When true, `<canvas>` elements behave in a similar way to `<svg>`.                                                   |
+| `scaleMode`       | `String`             | `fit`                     | VBCanvas's version of `preserveAspectRatio`. Accepts `fit` or `fill`. `fit` is equal to SVG's`xMidYMid meet`. `fill` is equal to SVG's`xMidYMid slice`. |
+| `resolution`      | `Number`             | `window.devicePixelRatio` | Pixel density of the `<canvas>`                                                                                                                         |
+| `static`          | `Boolean`            | `false`                   | Retains canvas drawing on resize, without the need of an animation loop.                                                                                |
