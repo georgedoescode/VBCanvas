@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .vb-canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script src="../dist/vb-canvas.min.js"></script>
+    <script>
+      javascript: (function () {
+        var script = document.createElement('script');
+        script.onload = function () {
+          var stats = new Stats();
+          document.body.appendChild(stats.dom);
+          requestAnimationFrame(function loop() {
+            stats.update();
+            requestAnimationFrame(loop);
+          });
+        };
+        script.src = '//mrdoob.github.io/stats.js/build/stats.min.js';
+        document.head.appendChild(script);
+      })();
+      class Particle {
+        constructor() {
+          this.x = window.innerWidth / 2;
+          this.y = window.innerHeight / 2;
+          this.velocityX = -3 + Math.random() * 6;
+          this.velocityY = -3 + Math.random() * 6;
+        }
+
+        run() {
+          ctx.beginPath();
+          ctx.fillRect(this.x, this.y, 8, 8);
+
+          this.x += this.velocityX;
+          this.y += this.velocityY;
+        }
+      }
+
+      const c = document.querySelector('canvas');
+
+      c.width = window.innerWidth * 2;
+      c.height = window.innerHeight * 2;
+
+      const ctx = c.getContext('2d');
+
+      ctx.scale(2, 2);
+
+      const particles = [];
+
+      for (let i = 0; i < 15000; i++) {
+        particles.push(new Particle());
+      }
+
+      (function draw() {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        for (const particle of particles) {
+          particle.run();
+        }
+
+        requestAnimationFrame(draw);
+      })();
+    </script>
+  </body>
+</html>

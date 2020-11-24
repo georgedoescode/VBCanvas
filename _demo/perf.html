@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .vb-canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="../dist/vb-canvas.min.js"></script>
+    <script>
+      javascript: (function () {
+        var script = document.createElement('script');
+        script.onload = function () {
+          var stats = new Stats();
+          document.body.appendChild(stats.dom);
+          requestAnimationFrame(function loop() {
+            stats.update();
+            requestAnimationFrame(loop);
+          });
+        };
+        script.src = '//mrdoob.github.io/stats.js/build/stats.min.js';
+        document.head.appendChild(script);
+      })();
+      class Particle {
+        constructor() {
+          this.x = 100;
+          this.y = 100;
+          this.velocityX = -1 + Math.random() * 2;
+          this.velocityY = -1 + Math.random() * 2;
+        }
+
+        run() {
+          ctx.beginPath();
+          ctx.fillRect(this.x, this.y, 1, 1);
+
+          this.x += this.velocityX;
+          this.y += this.velocityY;
+        }
+      }
+
+      const { ctx } = VBCanvas.createCanvas({
+        viewBox: [0, 0, 200, 200],
+        scaleMode: 'fill',
+      });
+
+      const particles = [];
+
+      for (let i = 0; i < 15000; i++) {
+        particles.push(new Particle());
+      }
+
+      (function draw() {
+        ctx.clearRect(0, 0, 200, 200);
+
+        for (const particle of particles) {
+          particle.run();
+        }
+
+        requestAnimationFrame(draw);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1606205438755" clover="3.2.0">
+  <project timestamp="1606205438755" name="All files">
+    <metrics statements="99" coveredstatements="74" conditionals="24" coveredconditionals="10" methods="29" coveredmethods="19" elements="152" coveredelements="103" complexity="0" loc="99" ncloc="99" packages="1" files="11" classes="11"/>
+    <file name="createContextHistory.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/createContextHistory.js">
+      <metrics statements="8" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
+      <line num="2" count="4" type="stmt"/>
+      <line num="3" count="4" type="stmt"/>
+      <line num="5" count="4" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+    </file>
+    <file name="createObservableContext.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/createObservableContext.js">
+      <metrics statements="9" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <line num="2" count="4" type="stmt"/>
+      <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="11" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+    </file>
+    <file name="defaults.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/defaults.js">
+      <metrics statements="0" coveredstatements="0" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+    </file>
+    <file name="domUtils.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/domUtils.js">
+      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <line num="2" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="3" type="stmt"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="12" count="4" type="stmt"/>
+      <line num="13" count="4" type="stmt"/>
+      <line num="15" count="4" type="stmt"/>
+      <line num="19" count="4" type="stmt"/>
+      <line num="23" count="4" type="stmt"/>
+      <line num="31" count="4" type="stmt"/>
+    </file>
+    <file name="index.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/index.js">
+      <metrics statements="16" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="2"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="20" count="4" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
+      <line num="23" count="4" type="stmt"/>
+      <line num="25" count="4" type="stmt"/>
+      <line num="27" count="4" type="stmt"/>
+      <line num="28" count="4" type="stmt"/>
+      <line num="30" count="4" type="stmt"/>
+      <line num="31" count="4" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="38" count="4" type="stmt"/>
+      <line num="40" count="4" type="stmt"/>
+      <line num="41" count="4" type="stmt"/>
+      <line num="50" count="4" type="stmt"/>
+      <line num="51" count="4" type="stmt"/>
+      <line num="53" count="4" type="stmt"/>
+    </file>
+    <file name="observeElDimensions.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/observeElDimensions.js">
+      <metrics statements="8" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <line num="5" count="4" type="stmt"/>
+      <line num="7" count="4" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="13" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="22" count="4" type="stmt"/>
+    </file>
+    <file name="resizeCanvas.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/resizeCanvas.js">
+      <metrics statements="4" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <line num="13" count="4" type="stmt"/>
+      <line num="22" count="4" type="stmt"/>
+      <line num="29" count="4" type="cond" truecount="1" falsecount="1"/>
+      <line num="30" count="0" type="stmt"/>
+    </file>
+    <file name="restoreFromHistory.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/restoreFromHistory.js">
+      <metrics statements="4" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+    </file>
+    <file name="setCanvasHTMLElementDimensions.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/setCanvasHTMLElementDimensions.js">
+      <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <line num="2" count="4" type="stmt"/>
+      <line num="3" count="4" type="stmt"/>
+      <line num="5" count="4" type="stmt"/>
+      <line num="16" count="4" type="cond" truecount="1" falsecount="1"/>
+      <line num="17" count="4" type="cond" truecount="1" falsecount="1"/>
+      <line num="19" count="4" type="stmt"/>
+      <line num="25" count="4" type="stmt"/>
+      <line num="27" count="4" type="stmt"/>
+      <line num="28" count="4" type="stmt"/>
+    </file>
+    <file name="styles.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/styles.js">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+      <line num="2" count="4" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="20" count="4" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
+      <line num="23" count="4" type="stmt"/>
+      <line num="25" count="4" type="stmt"/>
+      <line num="27" count="4" type="stmt"/>
+    </file>
+    <file name="transformContextMatrix.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/transformContextMatrix.js">
+      <metrics statements="20" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <line num="10" count="4" type="cond" truecount="1" falsecount="1"/>
+      <line num="11" count="4" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="16" count="4" type="stmt"/>
+      <line num="24" count="4" type="stmt"/>
+      <line num="25" count="4" type="stmt"/>
+      <line num="26" count="4" type="stmt"/>
+      <line num="27" count="4" type="stmt"/>
+      <line num="31" count="4" type="stmt"/>
+      <line num="32" count="4" type="stmt"/>
+      <line num="37" count="4" type="stmt"/>
+      <line num="39" count="4" type="stmt"/>
+      <line num="40" count="4" type="stmt"/>
+      <line num="42" count="4" type="stmt"/>
+      <line num="50" count="4" type="stmt"/>
+      <line num="51" count="4" type="stmt"/>
+      <line num="53" count="4" type="stmt"/>
+      <line num="54" count="4" type="stmt"/>
+      <line num="56" count="4" type="stmt"/>
+      <line num="58" count="4" type="stmt"/>
+    </file>
+  </project>
+</coverage>

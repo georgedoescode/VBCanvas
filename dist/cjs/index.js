@@ -135,7 +135,7 @@ function setCanvasHTMLElementDimensions({
   styleSheet,
 }) {
   if (autoAspectRatio) {
-    if (styleSheet.rules.length) styleSheet.deleteRule(0);
+    if (styleSheet.rules?.length) styleSheet.deleteRule(0);
 
     styleSheet.insertRule(
       `.${id} { height: ${calculateHeightFromAspectRatio(el, viewBox)} }`,
