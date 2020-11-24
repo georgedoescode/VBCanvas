@@ -67,8 +67,4 @@ describe('VBCanvas', () => {
       expect(otherDiv.contains(el)).toBe(false);
     });
   });
-
-  describe('VBCanvas -> Dimensions', () => {
-    it('When in autoAspectRatio mode, the canvas element is sized correctly', () => {});
-  });
 });

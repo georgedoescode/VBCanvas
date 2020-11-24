@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1606205438755" clover="3.2.0">
-  <project timestamp="1606205438755" name="All files">
+<coverage generated="1606206567164" clover="3.2.0">
+  <project timestamp="1606206567164" name="All files">
     <metrics statements="99" coveredstatements="74" conditionals="24" coveredconditionals="10" methods="29" coveredmethods="19" elements="152" coveredelements="103" complexity="0" loc="99" ncloc="99" packages="1" files="11" classes="11"/>
     <file name="createContextHistory.js" path="/Users/georgefrancis/Documents/fundev/untitled folder/VBCanvas/src/createContextHistory.js">
       <metrics statements="8" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
