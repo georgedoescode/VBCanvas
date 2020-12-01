@@ -1,16 +1,15 @@
-# ⚠️ In development!
-
 <img src="./vb-og.png">
 
 # HTML5 Canvas, responsive.
 
 **Getting `<canvas>` to look great is difficult. Making `<canvas>` responsive is even more difficult. VBCanvas is here to make it easy.**
 
-VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox). Once set, the canvas will automatically position all drawing relative to the viewBox and scale the canvas automatically. Blissful.
+VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox). Once set, the canvas will automatically position all drawing relative to the viewBox and scale the canvas automatically. Blissful 🧘‍♂️🧘
 
 ## Demo
 
-TODO: ADD DEMO HERE
+- [Simple animation (fit / xMidYMid meet)](https://codepen.io/georgedoescode/pen/ZEOgLwZ?editors=0010)
+- [Simple animation (fill / xMidYMid slice)](https://codepen.io/georgedoescode/pen/GRjJQgm)
 
 ## Installation
 
@@ -116,3 +115,7 @@ const { ctx } = createCanvas({
 | `scaleMode`       | `String`             | `fit`                     | VBCanvas's version of `preserveAspectRatio`. Accepts `fit` or `fill`. `fit` is equal to SVG's`xMidYMid meet`. `fill` is equal to SVG's`xMidYMid slice`. |
 | `resolution`      | `Number`             | `window.devicePixelRatio` | Pixel density of the `<canvas>`                                                                                                                         |
 | `static`          | `Boolean`            | `false`                   | Retains canvas drawing on resize, without the need of an animation loop.                                                                                |
+
+## PRs always welcome!
+
+This library is still in development, so you may find some small bugs. If you do, please open an issue or PR!
