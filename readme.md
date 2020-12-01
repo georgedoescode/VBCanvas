@@ -1,4 +1,4 @@
-<img src="./vb-og.png">
+<img src="https://raw.githubusercontent.com/georgedoescode/VBCanvas/main/vb-og.png">
 
 # HTML5 Canvas, responsive.
 
