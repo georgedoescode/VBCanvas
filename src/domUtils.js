@@ -15,10 +15,15 @@ function createCanvasHTMLElement(id) {
   return el;
 }
 
+/** @param {HTMLCanvasElement} canvasHTMLElement */
 function getCanvasContext(canvasHTMLElement) {
   return canvasHTMLElement.getContext('2d');
 }
 
+/**
+ * @param {HTMLElement} target
+ * @param {HTMLCanvasElement} el
+ */
 function mountCanvasToDOM(target, el) {
   target.appendChild(el);
 }
