@@ -28,10 +28,15 @@ function createCanvasHTMLElement(id) {
   return el;
 }
 
+/** @param {HTMLCanvasElement} canvasHTMLElement */
 function getCanvasContext(canvasHTMLElement) {
   return canvasHTMLElement.getContext('2d');
 }
 
+/**
+ * @param {HTMLElement} target
+ * @param {HTMLCanvasElement} el
+ */
 function mountCanvasToDOM(target, el) {
   target.appendChild(el);
 }
@@ -55,6 +60,11 @@ function createContextHistory() {
     get size() {
       return store.size;
     },
+    /**
+     * @param {"function" | "set"} type
+     * @param {string | number | symbol} name
+     * @param {unknown} args
+     */
     push(type, name, args) {
       store.set(position, { type, name, args });
 
@@ -66,6 +76,10 @@ function createContextHistory() {
   };
 }
 
+/**
+ * @param {CanvasRenderingContext2D} baseContext
+ * @param {ReturnType<typeof import("./createContextHistory").createContextHistory>['push']} observe
+ */
 function createObservableContext(baseContext, observe) {
   return new Proxy(baseContext, {
     get(target, name) {
@@ -211,6 +225,19 @@ function restoreFromHistory(ctx, history) {
   }
 }
 
+/**
+ * @typedef ResizeCanvasOptions
+ * @property {import(".").CreateCanvasOptions} opts
+ * @property {string} canvasID
+ * @property {HTMLCanvasElement} canvasHTMLElement
+ * @property {CSSStyleSheet} canvasStyleSheet
+ * @property {CanvasRenderingContext2D} baseContext
+ * @property {ReturnType<typeof import("./createContextHistory").createContextHistory>} history
+ */
+
+/**
+ * @param {ResizeCanvasOptions} options
+ */
 function resizeCanvas({
   opts,
   canvasID,
@@ -271,6 +298,19 @@ function createCanvasStyleSheet(id) {
 
 createBaseCanvasStyles();
 
+/**
+ * @typedef CreateCanvasOptions
+ * @property {HTMLElement} [target=document.body] Where to add the `<canvas>` element in the DOM.
+ * @property {[x: number, y: number, w: number, h: number]} [viewBox=[0, 0, 200, 200]] Canvas viewbox (x, y, w, h). Mirrors SVG Behaviour.
+ * @property {boolean} [autoAspectRatio=true] Match DOM dimensions to `viewBox`. When true, `<canvas>` elements behave in a similar way to `<svg>`.
+ * @property {"fit" | "fill"} [scaleMode='fit'] VBCanvas's version of `preserveAspectRatio`. Accepts `fit` or `fill`. `fit` is equal to SVG'sxMidYMid meet. `fill` is equal to SVG'sxMidYMid slice.
+ * @property {number} [resolution=window.devicePixelRatio] Pixel density of the `<canvas>`.
+ * @property {boolean} [static=false] Retains canvas drawing on resize, without the need of an animation loop.
+ */
+
+/**
+ * @param {CreateCanvasOptions} opts
+ */
 function createCanvas(opts) {
   opts = Object.assign({}, DEFAULTS, opts);
   opts.target = resolveTarget(opts.target);
