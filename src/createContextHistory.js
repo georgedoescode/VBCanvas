@@ -9,6 +9,11 @@ function createContextHistory() {
     get size() {
       return store.size;
     },
+    /**
+     * @param {"function" | "set"} type
+     * @param {string | number | symbol} name
+     * @param {unknown} args
+     */
     push(type, name, args) {
       store.set(position, { type, name, args });
 

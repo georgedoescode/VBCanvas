@@ -2,6 +2,19 @@ import { setCanvasHTMLElementDimensions } from './setCanvasHTMLElementDimensions
 import { transformContextMatrix } from './transformContextMatrix';
 import { restoreFromHistory } from './restoreFromHistory';
 
+/**
+ * @typedef ResizeCanvasOptions
+ * @property {import(".").CreateCanvasOptions} opts
+ * @property {string} canvasID
+ * @property {HTMLCanvasElement} canvasHTMLElement
+ * @property {CSSStyleSheet} canvasStyleSheet
+ * @property {CanvasRenderingContext2D} baseContext
+ * @property {ReturnType<typeof import("./createContextHistory").createContextHistory>} history
+ */
+
+/**
+ * @param {ResizeCanvasOptions} options
+ */
 function resizeCanvas({
   opts,
   canvasID,
