@@ -3,7 +3,7 @@
   "source": "src/index.js",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
   "dependencies": {
     "lodash-es": "^4.17.15",
