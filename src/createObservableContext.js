@@ -7,9 +7,9 @@ function createObservableContext(baseContext, observe) {
     get(target, name) {
       if (typeof target[name] === 'function') {
         return function () {
-          target[name].apply(target, arguments);
-
           observe('function', name, [...arguments]);
+
+          return target[name].apply(target, arguments);
         };
       } else {
         return target[name];

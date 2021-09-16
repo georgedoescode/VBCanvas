@@ -64,6 +64,11 @@
         ctx.fillStyle = 'red';
 
         ctx.fillRect(width / 2 - 10, height / 2 - 10, 20, 20);
+
+        let data = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.putImageData(data, 0, 0);
       })();
 
       (function () {
