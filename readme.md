@@ -2,9 +2,7 @@
 
 # HTML5 Canvas, responsive.
 
-**Getting `<canvas>` to look great is difficult. Making `<canvas>` responsive is even more difficult. VBCanvas is here to make it easy.**
-
-VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox). Once set, the canvas will automatically position all drawing relative to the viewBox and scale the canvas automatically. Blissful 🧘‍♂️🧘
+VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox). Once set, the canvas will render it's contents relative to the viewBox and scale the canvas automatically!
 
 ## Demo
 
@@ -31,7 +29,7 @@ yarn add vb-canvas
 
 ## Usage
 
-The quickest way to take VBCanvas for a spin is to whip up a simple `.html` file and grab the library from `unpkg`. Once you are all set up, you can create canvasses using `VBCanvas.createCanvas`.
+The quickest way to take VBCanvas for a spin is to create a `.html` file and grab the library from `unpkg`. Once you are all set up, you can create canvasses using `VBCanvas.createCanvas`.
 
 Check out the code below for a complete example.
 
@@ -75,7 +73,7 @@ Check out the code below for a complete example.
         target: '.canvas-wrapper',
       });
 
-      // simple animation loop (not VBCanvas specific)
+      // animation loop (not VBCanvas specific)
       (function draw() {
         // draw a rectangle in the center of the canvas
         ctx.fillRect(40, 40, 20, 20);
@@ -91,7 +89,7 @@ Check out the code below for a complete example.
 
 ### Module bundlers
 
-To use VBCanvas in a module based environment, just import the `createCanvas` function from `VBCanvas` like so:
+To use VBCanvas in a module based environment, import the `createCanvas` function from `VBCanvas` like so:
 
 ```javascript
 import { createCanvas } from 'VBCanvas';
