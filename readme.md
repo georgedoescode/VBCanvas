@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/georgedoescode/VBCanvas/main/vb-og.png">
-
 # HTML5 Canvas, responsive.
 
 VBCanvas allows you to define a canvas viewBox attribute [just like SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox). Once set, the canvas will render it's contents relative to the viewBox and scale the canvas automatically!
